@@ -1,0 +1,11 @@
+database:
+  type: sqlite
+  path: sample_data/sample.db
+
+  # Uncomment below for MySQL instead:
+  # type: mysql
+  # host: localhost
+  # port: 3306
+  # username: root
+  # password: yourpassword
+  # database: your_db_name
