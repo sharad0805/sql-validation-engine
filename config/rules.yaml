@@ -1,0 +1,81 @@
+rules:
+  # ── NULL CHECKS ──────────────────────────────────────────
+  - rule_id: R001
+    table: employees
+    column: name
+    rule_type: null_check
+    severity: critical
+    description: "Employee name must not be null"
+
+  - rule_id: R002
+    table: employees
+    column: email
+    rule_type: null_check
+    severity: high
+    description: "Employee email must not be null"
+
+  - rule_id: R003
+    table: employees
+    column: salary
+    rule_type: null_check
+    severity: critical
+    description: "Salary must not be null"
+
+  # ── RANGE CHECKS ─────────────────────────────────────────
+  - rule_id: R004
+    table: employees
+    column: age
+    rule_type: range_check
+    params:
+      min: 18
+      max: 65
+    severity: high
+    description: "Employee age must be between 18 and 65"
+
+  - rule_id: R005
+    table: employees
+    column: salary
+    rule_type: range_check
+    params:
+      min: 10000
+      max: 500000
+    severity: high
+    description: "Salary must be between 10,000 and 500,000"
+
+  # ── REGEX CHECKS ─────────────────────────────────────────
+  - rule_id: R006
+    table: employees
+    column: email
+    rule_type: regex_check
+    params:
+      pattern: "^[\\w\\.-]+@[\\w\\.-]+\\.\\w{2,}$"
+    severity: medium
+    description: "Email must be in valid format"
+
+  - rule_id: R007
+    table: employees
+    column: status
+    rule_type: allowed_values_check
+    params:
+      values: ["active", "inactive", "on_leave"]
+    severity: medium
+    description: "Status must be one of: active, inactive, on_leave"
+
+  # ── UNIQUENESS CHECKS ────────────────────────────────────
+  - rule_id: R008
+    table: employees
+    column: email
+    rule_type: uniqueness_check
+    severity: high
+    description: "Employee email must be unique"
+
+  # ── REFERENTIAL CHECKS ───────────────────────────────────
+  - rule_id: R009
+    table: employees
+    column: dept_id
+    rule_type: referential_check
+    params:
+      ref_table: departments
+      ref_column: dept_id
+    severity: critical
+    description: "dept_id must exist in departments table"
