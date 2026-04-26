@@ -26,12 +26,13 @@ logging.basicConfig(level=logging.INFO, format="%(message)s")
 
 from src.rule_loader import load_rules
 from src.validator import run_validation
+from src.report_generator import generate_report
+
 
 rules = load_rules()
 violations = run_validation(rules)
 
-if violations.empty:
-    print("No violations found!")
-else:
-    print(f"\nTotal violations found: {len(violations)}\n")
-    print(violations.to_string(index=False))
+print(f"\nTotal violations found: {len(violations)}")
+
+path = generate_report(violations, total_rules=len(rules))
+print(f"\nReport generated: {path}")
