@@ -132,7 +132,7 @@ def run_validation(
                     bad_rows = handler(df, rule)
 
                 if bad_rows.empty:
-                    logger.info(f"  ✓ {rule.rule_id} passed — no violations")
+                    logger.info(f"  [PASS] {rule.rule_id} passed — no violations")
                     continue
 
                 # Build violations records
@@ -148,7 +148,7 @@ def run_validation(
                         "violated_value": row.get("violated_value", "NULL"),
                     })
 
-                logger.info(f"  ✗ {rule.rule_id} — {len(bad_rows)} violation(s) found")
+                logger.info(f"  [FAIL] {rule.rule_id} — {len(bad_rows)} violation(s) found")
 
             except Exception as e:
                 logger.error(f"Error running {rule.rule_id}: {e}")
